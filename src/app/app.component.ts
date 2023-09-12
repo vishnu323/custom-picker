@@ -17,6 +17,7 @@ export class AppComponent {
   mytime:Date =new Date()
   fromtime : Date = new Date();
   totime:Date = new Date();
+  startclicked : Boolean = false;
 
   constructor(private fb: FormBuilder,private datePipe: DatePipe) {
     this.range = this.fb.group({
@@ -53,17 +54,20 @@ export class AppComponent {
 
   }
   handleDateChange() {
-    
     const startValue = this.range.get('start')?.value;
     const endValue = this.range.get('end')?.value;
-    if(startValue){
+    if(startValue && !endValue && !this.startclicked){
       this.activeCustomClickId = "custom-range"
-      this.attachFromtime();
+      this.removeElement('end-element')
       this.fromtime = this.mytime;
+      this.attachFromtime();
+      this.startclicked = true;
     }
-    if(endValue){
-      this.attachTotime()
+    if(startValue && endValue){
       this.totime = this.mytime;
+      this.attachTotime()
+      this.startclicked = false;
+      
     }
   }
   
@@ -94,6 +98,7 @@ export class AppComponent {
     startelement.setAttribute("id",startid)
     startelement.innerText = this.formatTime(this.fromtime);
     startRef.appendChild(startelement)
+    console.log("vishnu12345",this.formatTime(this.fromtime))
   }
 
   attachTotime(){
@@ -117,6 +122,8 @@ export class AppComponent {
     }else if(type ==="day"){
       const [start,end] = this.handleLastDays(duration)
       this.updateTime(start,end)
+      this.attachFromtime()
+      this.attachTotime()
     }else if(type === "custom"){
       this.removeElement('start-element');
       this.removeElement('end-element');
