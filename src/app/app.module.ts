@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { CustomRangePanelComponent } from './example-header/custom-range-panel.component';
 import { ExampleHeaderComponent } from './example-header/example-header.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     TimepickerModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

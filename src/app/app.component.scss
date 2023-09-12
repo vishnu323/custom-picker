@@ -53,3 +53,16 @@
   height:450px !important;
 }
 
+::ng-deep .mat-date-range-input-start-wrapper{
+  display: flex;
+  column-gap: 3px;
+}
+
+::ng-deep .mat-date-range-input-end-wrapper{
+  display: flex;
+  column-gap: 3px;
+}
+
+::ng-deep input.mat-end-date{
+  width:80px;
+}
