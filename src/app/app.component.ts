@@ -46,11 +46,11 @@ export class AppComponent {
   clickHandler(type:string,duration : number){
     
     if(type ==="hour"){
-
+      this.handleCustomRange(duration)
     }else if(type ==="day"){
-
+      this.handleLastDays(duration)
     }else if(type === "custom"){
-
+      this.clearSelection()
     }
   }
 
