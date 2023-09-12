@@ -1,6 +1,6 @@
 <div class="date-time-picker">
   <div class="calendar">
-    <mat-form-field>
+    <mat-form-field (click)="handleDateRangeInputClick()">
       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
         <input
           matStartDate

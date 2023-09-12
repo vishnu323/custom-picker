@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DateRange } from '@angular/material/datepicker';
+import { MatDateRangePicker } from '@angular/material/datepicker';
 import { subHours, subDays } from 'date-fns';
+
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   range: FormGroup;
   showCustomButtons = false; // Initialize to false
   activeCustomClickId:string = "last-1-hour";
+  @ViewChild('picker') datePicker: MatDateRangePicker<Date>;
 
   constructor(private fb: FormBuilder) {
     this.range = this.fb.group({
@@ -28,6 +30,9 @@ export class AppComponent {
     this.showCustomButtons = false; // Set to false when the calendar is closed
   }
 
+  public handleDateRangeInputClick =() =>{
+    this.datePicker.open();
+  }
   handleDateChange() {
     // Handle date range change here
     const startValue = this.range.get('start')?.value;
