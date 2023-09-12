@@ -15,13 +15,13 @@
 
 
 .btn{
-  width:150px;
+  padding: 8px 4px;
   cursor: pointer;
 }
 .show-buttons{
   z-index: 10000;
   position: absolute;
-  right: 2px;
+  right: 40px;
   top:48px;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,8 @@
 .btn:active{
   color:white;
   padding:2px;
+}
+.btn.active{
+  background-color: blue;
+  color: white;
 }

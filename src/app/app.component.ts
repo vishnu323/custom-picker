@@ -32,9 +32,9 @@ export class AppComponent {
     // Handle date range change here
     const startValue = this.range.get('start')?.value;
     const endValue = this.range.get('end')?.value;
-
-    console.log('Start Date:', startValue);
-    console.log('End Date:', endValue);
+    if(startValue){
+      this.activeCustomClickId = "custom-range"
+    }
   }
   
   handleCustomRange(duration: number) {
@@ -44,12 +44,10 @@ export class AppComponent {
     this.range.get('end')?.setValue(now);
   }
 
-  applycssOnClick(id : string){
-    const idRef = document.querySelector(`#${id}`);
-  }
+  
 
   clickHandler(type:string,id: string,duration : number){
-    
+    this.activeCustomClickId = id;
     if(type ==="hour"){
       this.handleCustomRange(duration)
     }else if(type ==="day"){
