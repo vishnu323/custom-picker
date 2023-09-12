@@ -43,17 +43,20 @@ export class AppComponent {
     this.range.get('end')?.setValue(now);
   }
 
-  handleLast1Hour() {
-    this.handleCustomRange(1);
+  clickHandler(type:string,duration : number){
+    
+    if(type ==="hour"){
+
+    }else if(type ==="day"){
+
+    }else if(type === "custom"){
+
+    }
   }
 
-  handleLast2Hours() {
-    this.handleCustomRange(2);
-  }
-
-  handleLast7Days() {
+  handleLastDays(duration : number) {
     const now = new Date();
-    const newStartDate = subDays(now, 7);
+    const newStartDate = subDays(now, duration);
     this.range.get('start')?.setValue(newStartDate);
     this.range.get('end')?.setValue(now);
   }
