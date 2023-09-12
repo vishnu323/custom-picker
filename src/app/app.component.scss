@@ -1,0 +1,14 @@
+.date-time-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar {
+  flex: 1;
+}
+
+.custom-buttons {
+  display: flex;
+  gap: 10px;
+}
