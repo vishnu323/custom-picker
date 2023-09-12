@@ -14,7 +14,11 @@
 }
 
 .custom-buttons {
-  display: none;
+  display: flex;
+  // flex-direction: column;
+  // column-gap: none;
+  
+
 }
 .show-buttons{
   display: block;
