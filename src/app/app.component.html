@@ -36,5 +36,10 @@
     [ngClass]="{ 'active': activeCustomClickId === 'last-90-days' }" >Last 90 Days</div>
     <div class="btn" id="custom-range" (click)="clickHandler('custom','custom-range',null)"
     [ngClass]="{ 'active': activeCustomClickId === 'custom-range' }" >Custom Range</div>
+    <div id="time-picker">
+      <timepicker [(ngModel)]="mytime" [showMeridian]="true"
+      (ngModelChange)="onTimeChange($event)"></timepicker>
+    </div>
   </div>
+  
 </div>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CustomRangePanelComponent } from './example-header/custom-range-panel.component';
 import { ExampleHeaderComponent } from './example-header/example-header.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { ExampleHeaderComponent } from './example-header/example-header.componen
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    TimepickerModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -14,6 +14,7 @@ export class AppComponent {
   showCustomButtons = false; // Initialize to false
   activeCustomClickId:string = "last-1-hour";
   @ViewChild('picker') datePicker: MatDateRangePicker<Date>;
+  mytime:any =new Date()
 
   constructor(private fb: FormBuilder) {
     this.range = this.fb.group({
@@ -32,6 +33,10 @@ export class AppComponent {
 
   public handleDateRangeInputClick =() =>{
     this.datePicker.open();
+  }
+
+  onTimeChange(event:any){
+
   }
   handleDateChange() {
     // Handle date range change here

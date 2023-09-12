@@ -29,7 +29,7 @@
   padding:24px;
   border: 1px solid black;
   border-left: unset;
-  height:300px;
+  height:398px;
 }
 
 .btn:active{
@@ -43,3 +43,13 @@
 ::ng-deep .mat-form-field-wrapper{
   width:450px;
 }
+
+#time-picker{
+  position: absolute;
+  bottom:40px;
+  left:-250px;
+}
+::ng-deep .mat-datepicker-content{
+  height:450px !important;
+}
+
