@@ -11,6 +11,7 @@ import { subHours, subDays } from 'date-fns';
 export class AppComponent {
   range: FormGroup;
   showCustomButtons = false; // Initialize to false
+  activeCustomClickId:string = "last-1-hour";
 
   constructor(private fb: FormBuilder) {
     this.range = this.fb.group({
@@ -43,7 +44,11 @@ export class AppComponent {
     this.range.get('end')?.setValue(now);
   }
 
-  clickHandler(type:string,duration : number){
+  applycssOnClick(id : string){
+    const idRef = document.querySelector(`#${id}`);
+  }
+
+  clickHandler(type:string,id: string,duration : number){
     
     if(type ==="hour"){
       this.handleCustomRange(duration)
