@@ -31,7 +31,7 @@ export class AppComponent {
     this.showCustomButtons = false; // Set to false when the calendar is closed
   }
 
-  public handleDateRangeInputClick =() =>{
+  handleDateRangeInputClick(){
     this.datePicker.open();
   }
 
