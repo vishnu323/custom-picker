@@ -1,7 +1,7 @@
 <div class="date-time-picker">
   <div class="calendar">
     <mat-form-field>
-      <mat-date-range-input [formGroup]="range" [rangePicker]="picker" >
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
         <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="handleDateChange()"/>
         <input matEndDate formControlName="end" placeholder="End date" (dateChange)="handleDateChange()"/>
       </mat-date-range-input>
@@ -9,7 +9,7 @@
       <mat-date-range-picker #picker (opened)="onCalendarOpen()" (closed)="onCalendarClose()"></mat-date-range-picker>
     </mat-form-field>
   </div>
-  <div class="custom-buttons" *ngIf="showCustomButtons">
+  <div class="custom-buttons" [ngClass]="{'show-buttons': showCustomButtons}">
     <button (click)="handleLast1Hour()">Last 1 Hour</button>
     <button (click)="handleLast2Hours()">Last 2 Hours</button>
     <button (click)="handleLast7Days()">Last 7 Days</button>
