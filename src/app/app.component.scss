@@ -14,5 +14,9 @@
 }
 
 .custom-buttons {
-  z-index: 1000 !important; /* Adjust the value as needed */
+  display: none;
+}
+.show-buttons{
+  display: block;
+  z-index: 10000;
 }
