@@ -87,6 +87,7 @@ export class AppComponent {
       this.removeElement('end-element')
       this.fromtime = this.mytime;
       this.attachFromtime();
+      console.log("vishnu1234556")
       this.startclicked = true;
     }
     if(startValue && endValue){
@@ -132,18 +133,17 @@ export class AppComponent {
 
   attachFromtime(){
     const startid = 'start-element';
-    const startRef = document.querySelector('.mat-date-range-input-start-wrapper');
+    const startRef = document.querySelector('.calendar .mat-date-range-input-start-wrapper');
     this.removeElement(startid);
     const startelement = document.createElement("div");
     startelement.setAttribute("id",startid)
     startelement.innerText = this.formatTime(this.fromtime);
     startRef.appendChild(startelement)
-    console.log("vishnu12345",this.formatTime(this.fromtime))
   }
 
   attachTotime(){
     const endid = 'end-element';
-    const endRef = document.querySelector('.mat-date-range-input-end-wrapper');
+    const endRef = document.querySelector('.calendar .mat-date-range-input-end-wrapper');
     this.removeElement(endid)
     const endelement = document.createElement("div");
     endelement.setAttribute("id",endid)
