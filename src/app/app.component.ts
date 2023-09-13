@@ -90,10 +90,11 @@ export class AppComponent {
   }
 
   onTimeChange(event:any){
-    if(this.startclicked){
+    if(this.range.get('start')?.value && !this.range.get('end')?.value){
       this.fromtime = this.mytime;
       this.attachFromtime();
-    }else{
+    }
+    if(this.range.get('end')?.value){
       this.totime = this.mytime;
       this.attachTotime();
     }
