@@ -87,7 +87,6 @@ export class AppComponent {
       this.removeElement('end-element')
       this.fromtime = this.mytime;
       this.attachFromtime();
-      console.log("vishnu1234556")
       this.startclicked = true;
     }
     if(startValue && endValue){
@@ -106,6 +105,7 @@ export class AppComponent {
       this.startDayclicked = true;
     }
     if(startValue && endValue){
+      this.enableEndDate();
       this.startDayclicked = false;
       
     }
