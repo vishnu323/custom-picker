@@ -69,8 +69,8 @@
   </div>
   <div class="custom-buttons" [ngClass]="{ 'show-day-buttons': showDayCustomButtons }">
     <div class="btn" id="today" (click)="clickDayHandler('day','today',0)" [ngClass]="{ 'active': activeDayCustomClickId === 'today' }">Today</div>
-    <div class="btn" id="yesterday" [ngClass]="{ 'active': activeDayCustomClickId === 'yesterday' }" (click)="clickDayHandler('day','yesterday',6)">Yesterday</div>
-    <div class="btn" id="last-7-days" (click)="clickDayHandler('hour','last-7-days',24)"
+    <div class="btn" id="yesterday" [ngClass]="{ 'active': activeDayCustomClickId === 'yesterday' }" (click)="clickDayHandler('day','yesterday',1)">Yesterday</div>
+    <div class="btn" id="last-7-days" (click)="clickDayHandler('day','last-7-days',7)"
     [ngClass]="{ 'active': activeDayCustomClickId === 'last-7-days' }">Last 7 days</div>
     <div class="btn" id="last-30-days" (click)="clickDayHandler('day','last-30-days',30)"
     [ngClass]="{ 'active': activeDayCustomClickId === 'last-30-days' }" >Last 30 Days</div>

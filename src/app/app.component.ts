@@ -96,8 +96,16 @@ export class AppComponent {
   }
 
   handleDayDateChange() {
-    const startValue = this.range.get('start')?.value;
-    const endValue = this.range.get('end')?.value;
+    const startValue = this.dayRange.get('start')?.value;
+    const endValue = this.dayRange.get('end')?.value;
+    if(startValue && !endValue && !this.startDayclicked){
+      this.activeDayCustomClickId = "custom-range"
+      this.startDayclicked = true;
+    }
+    if(startValue && endValue){
+      this.startDayclicked = false;
+      
+    }
     
   }
   
