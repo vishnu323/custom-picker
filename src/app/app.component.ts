@@ -210,8 +210,6 @@ export class AppComponent {
       const [start,end] = this.handleDayLastDays(duration)
     }else if(type === "custom"){
       this.clearDaySelection()
-    }else{
-
     }
   }
 
