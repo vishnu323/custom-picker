@@ -33,8 +33,8 @@ export class AppComponent {
     });
 
     this.dayRange = this.fb.group({
-      start: [new Date()],
-      end: [new Date()],
+      start: [],
+      end: [],
     });
   }
   
@@ -48,6 +48,8 @@ export class AppComponent {
     this.updateTime(start,end)
     this.attachFromtime()
     this.attachTotime()
+    this.clickDayHandler("day","today",0)
+    
   }
 
   onCalendarOpen() {
@@ -169,13 +171,47 @@ export class AppComponent {
     }
   }
 
+  disableEndDate(){
+    const endRef:any = document.querySelector('.day-calendar .mat-date-range-input-end-wrapper');
 
+    const seperator:any = document.querySelector('.day-calendar .mat-date-range-input-separator')
+    if(endRef){
+      endRef.style.display="none"
+    }
+    if(seperator){
+      seperator.style.display="none"
+    }
+  
+  }
+
+  enableEndDate(){
+    const endRef:any = document.querySelector('.day-calendar .mat-date-range-input-end-wrapper');
+    const seperator:any = document.querySelector('.day-calendar .mat-date-range-input-separator')
+    if(endRef){
+      endRef.style.display = "block"
+    }
+    if(seperator){
+      seperator.style.display="block"
+    }
+  }
+
+  handleEndDate(id:string){
+    if(id ==="today"  || id==="yesterday"){
+      this.disableEndDate()
+    }else{
+      this.enableEndDate();
+    }
+
+  }
   clickDayHandler(type:string,id: string,duration : number){
     this.activeDayCustomClickId = id;
+    this.handleEndDate(id);
     if(type ==="day"){
       const [start,end] = this.handleDayLastDays(duration)
     }else if(type === "custom"){
       this.clearDaySelection()
+    }else{
+
     }
   }
 
