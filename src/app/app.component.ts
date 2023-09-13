@@ -19,6 +19,7 @@ export class AppComponent {
   totime:Date = new Date();
   startclicked : Boolean = false;
   calenderopenmanager : Boolean= true;
+  allowTimeChange:Boolean = false; 
 
   //day picker
   dayRange: FormGroup;
@@ -90,14 +91,16 @@ export class AppComponent {
   }
 
   onTimeChange(event:any){
-    if(this.range.get('start')?.value && !this.range.get('end')?.value){
-      this.fromtime = this.mytime;
-      this.attachFromtime();
-    }
-    if(this.range.get('end')?.value){
-      this.totime = this.mytime;
-      this.attachTotime();
-    }
+    if(this.allowTimeChange){
+      if(this.range.get('start')?.value && !this.range.get('end')?.value){
+        this.fromtime = this.mytime;
+        this.attachFromtime();
+      }
+      if(this.range.get('end')?.value){
+        this.totime = this.mytime;
+        this.attachTotime();
+      }
+  }
 
   }
   handleDateChange() {
@@ -105,6 +108,7 @@ export class AppComponent {
     const endValue = this.range.get('end')?.value;
     if(startValue && !endValue && !this.startclicked){
       this.activeCustomClickId = "custom-range"
+      this.allowTimeChange=true
       this.removeElement('end-element')
       this.fromtime = this.mytime;
       this.attachFromtime();
@@ -176,16 +180,19 @@ export class AppComponent {
   clickHandler(type:string,id: string,duration : number){
     this.activeCustomClickId = id;
     if(type ==="hour"){
+      this.allowTimeChange=false
       const [start,end] = this.handleCustomRange(duration)
       this.updateTime(start,end)
       this.attachFromtime()
       this.attachTotime()
     }else if(type ==="day"){
+      this.allowTimeChange=false
       const [start,end] = this.handleLastDays(duration)
       this.updateTime(start,end)
       this.attachFromtime()
       this.attachTotime()
     }else if(type === "custom"){
+      this.allowTimeChange=true
       this.removeElement('start-element');
       this.removeElement('end-element');
       this.clearSelection()
