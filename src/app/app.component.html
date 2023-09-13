@@ -1,3 +1,4 @@
+<div class="date-pickers-holders">
 <div class="date-time-picker">
   <div class="calendar">
     <mat-form-field (click)="handleDateRangeInputClick()">
@@ -40,4 +41,50 @@
     </div>
   </div>
   
+</div>
+
+
+<div class="date-picker">
+  <div class="calendar">
+    <mat-form-field (click)="handleDayDateRangeInputClick()">
+      <mat-date-range-input [formGroup]="dayRange" [rangePicker]="dateDayPicker">
+        <input
+          matStartDate
+          formControlName="start"
+          (dateChange)="handleDateChange()"
+        />
+        <input
+          matEndDate
+          formControlName="end"
+          (dateChange)="handleDateChange()"
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="dateDayPicker"></mat-datepicker-toggle>
+      <mat-date-range-picker
+        #dateDayPicker
+        (opened)="onCalendarOpen()"
+        (closed)="onCalendarClose()"
+      ></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="custom-buttons" [ngClass]="{ 'show-buttons': showCustomButtons }">
+    <div class="btn" id="last-1-hour" (click)="clickHandler('hour','last-1-hour',1)" [ngClass]="{ 'active': activeCustomClickId === 'last-1-hour' }">Last 1 Hour</div>
+    <div class="btn" id="last-6-hour" [ngClass]="{ 'active': activeCustomClickId === 'last-6-hour' }" (click)="clickHandler('hour','last-6-hour',6)">Last 6 Hour</div>
+    <div class="btn" id="last-24-hour" (click)="clickHandler('hour','last-24-hour',24)"
+    [ngClass]="{ 'active': activeCustomClickId === 'last-24-hour' }">Last 24 Hour</div>
+    <div class="btn" id="last-7-days" (click)="clickHandler('day','last-7-days',7)"
+    [ngClass]="{ 'active': activeCustomClickId === 'last-7-days' }" >Last 7 Days</div>
+    <div class="btn" id="last-30-days" (click)="clickHandler('day','last-30-days',30)"
+    [ngClass]="{ 'active': activeCustomClickId === 'last-30-days' }" >Last 30 Days</div>
+    <div class="btn" id="last-90-days" (click)="clickHandler('day','last-90-days',90)"
+    [ngClass]="{ 'active': activeCustomClickId === 'last-90-days' }" >Last 90 Days</div>
+    <div class="btn" id="custom-range" (click)="clickHandler('custom','custom-range',null)"
+    [ngClass]="{ 'active': activeCustomClickId === 'custom-range' }" >Custom Range</div>
+    <div id="time-picker">
+      <timepicker [(ngModel)]="mytime" [showMeridian]="true"
+      (ngModelChange)="onTimeChange($event)"></timepicker>
+    </div>
+  </div>
+  
+</div>
 </div>

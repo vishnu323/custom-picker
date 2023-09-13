@@ -19,8 +19,20 @@ export class AppComponent {
   totime:Date = new Date();
   startclicked : Boolean = false;
 
+  //day picker
+  dayRange: FormGroup;
+  showDayCustomButtons = false; // Initialize to false
+  activeDayCustomClickId:string = "last-1-hour";
+  @ViewChild('dateDayPicker') dateDaypicker: MatDateRangePicker<Date>;
+  startDayclicked : Boolean = false;
+
   constructor(private fb: FormBuilder,private datePipe: DatePipe) {
     this.range = this.fb.group({
+      start: [''],
+      end: [''],
+    });
+
+    this.dayRange = this.fb.group({
       start: [''],
       end: [''],
     });
@@ -42,12 +54,24 @@ export class AppComponent {
     this.showCustomButtons = true; // Set to true when the calendar is opened
   }
 
+  onDayCalendarOpen() {
+    this.showDayCustomButtons = true; // Set to true when the calendar is opened
+  }
+
   onCalendarClose() {
     this.showCustomButtons = false; // Set to false when the calendar is closed
   }
 
+  onDayCalendarClose() {
+    this.showDayCustomButtons = false; // Set to false when the calendar is closed
+  }
+
   handleDateRangeInputClick(){
     this.datePicker.open();
+  }
+
+  handleDayDateRangeInputClick(){
+    this.dateDaypicker.open();
   }
 
   onTimeChange(event:any){
