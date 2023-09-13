@@ -51,12 +51,12 @@
         <input
           matStartDate
           formControlName="start"
-          (dateChange)="handleDateChange()"
+          (dateChange)="handleDayDateChange()"
         />
         <input
           matEndDate
           formControlName="end"
-          (dateChange)="handleDateChange()"
+          (dateChange)="handleDayDateChange()"
         />
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="myDayCustomPicker"></mat-datepicker-toggle>
