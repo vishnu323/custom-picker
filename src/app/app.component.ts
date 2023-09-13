@@ -83,6 +83,7 @@ export class AppComponent {
       this.attachFromtime();
     }else{
       this.totime = this.mytime;
+      this.attachTotime();
     }
 
   }
