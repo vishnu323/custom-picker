@@ -65,6 +65,8 @@ export class AppComponent {
     this.showCustomButtons = false; // Set to false when the calendar is closed
     if(this.calenderopenmanager && this.activeCustomClickId === "custom-range"){
       this.datePicker.open();
+    }else{
+      this.calenderopenmanager = true;
     }
     
   }
@@ -76,6 +78,11 @@ export class AppComponent {
 
   handleDateRangeInputClick(){
     this.datePicker.open();
+  }
+
+  handleDateCalendarClose(){
+    this.calenderopenmanager = false;
+    this.datePicker.close();
   }
 
   handleDayDateRangeInputClick(){
