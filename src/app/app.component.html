@@ -1,6 +1,7 @@
 <div class="date-pickers-holders">
 <div class="date-time-picker">
   <div class="calendar">
+
     <mat-form-field (click)="handleDateRangeInputClick()">
       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
         <input
@@ -19,6 +20,7 @@
         #picker
         (opened)="onCalendarOpen()"
         (closed)="onCalendarClose()"
+        (click)="preventToggleClose($event)"
       ></mat-date-range-picker>
     </mat-form-field>
   </div>

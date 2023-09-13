@@ -66,6 +66,7 @@ export class AppComponent {
 
   onDayCalendarClose() {
     this.showDayCustomButtons = false; // Set to false when the calendar is closed
+    
   }
 
   handleDateRangeInputClick(){
@@ -77,6 +78,12 @@ export class AppComponent {
   }
 
   onTimeChange(event:any){
+    if(this.startclicked){
+      this.fromtime = this.mytime;
+      this.attachFromtime();
+    }else{
+      this.totime = this.mytime;
+    }
 
   }
   handleDateChange() {
@@ -112,6 +119,12 @@ export class AppComponent {
     
   }
   
+  preventToggleClose(event: MouseEvent) {
+    console.log("vishnu12345677")
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   handleCustomRange(duration: number) {
     const now = new Date();
     const newStartDate = subHours(now, duration);
