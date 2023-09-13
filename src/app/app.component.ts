@@ -22,8 +22,8 @@ export class AppComponent {
   //day picker
   dayRange: FormGroup;
   showDayCustomButtons = false; // Initialize to false
-  activeDayCustomClickId:string = "last-1-hour";
-  @ViewChild('dateDayPicker') dateDaypicker: MatDateRangePicker<Date>;
+  activeDayCustomClickId:string = "today";
+  @ViewChild('myDayCustomPicker') dateDaypicker: MatDateRangePicker<Date>;
   startDayclicked : Boolean = false;
 
   constructor(private fb: FormBuilder,private datePipe: DatePipe) {
@@ -33,8 +33,8 @@ export class AppComponent {
     });
 
     this.dayRange = this.fb.group({
-      start: [''],
-      end: [''],
+      start: [new Date()],
+      end: [new Date()],
     });
   }
   
@@ -93,6 +93,12 @@ export class AppComponent {
       this.startclicked = false;
       
     }
+  }
+
+  handleDayDateChange() {
+    const startValue = this.range.get('start')?.value;
+    const endValue = this.range.get('end')?.value;
+    
   }
   
   handleCustomRange(duration: number) {
@@ -155,6 +161,17 @@ export class AppComponent {
     }
   }
 
+
+  clickDayHandler(type:string,id: string,duration : number){
+    this.activeDayCustomClickId = id;
+    if(type ==="day"){
+      const [start,end] = this.handleDayLastDays(duration)
+    }else if(type === "custom"){
+      this.clearDaySelection()
+    }
+  }
+
+
   handleLastDays(duration : number) {
     const now = new Date();
     const newStartDate = subDays(now, duration);
@@ -163,9 +180,22 @@ export class AppComponent {
     return [newStartDate,now];
   }
 
+  handleDayLastDays(duration : number) {
+    const now = new Date();
+    const newStartDate = subDays(now, duration);
+    this.dayRange.get('start')?.setValue(newStartDate);
+    this.dayRange.get('end')?.setValue(now);
+    return [newStartDate,now];
+  }
+
   clearSelection() {
     this.range.get('start')?.setValue(null);
     this.range.get('end')?.setValue(null);
+  }
+
+  clearDaySelection() {
+    this.dayRange.get('start')?.setValue(null);
+    this.dayRange.get('end')?.setValue(null);
   }
 
 }
