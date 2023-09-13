@@ -20,7 +20,6 @@
         #picker
         (opened)="onCalendarOpen()"
         (closed)="onCalendarClose()"
-        (click)="preventToggleClose($event)"
       ></mat-date-range-picker>
     </mat-form-field>
   </div>
@@ -40,6 +39,7 @@
     <div id="time-picker">
       <timepicker [(ngModel)]="mytime" [showMeridian]="true"
       (ngModelChange)="onTimeChange($event)"></timepicker>
+      <div class="close-btn">close</div>
     </div>
   </div>
   

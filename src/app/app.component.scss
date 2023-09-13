@@ -74,3 +74,16 @@
 ::ng-deep input.mat-end-date{
   width:80px;
 }
+
+.close-btn{
+  display: flex;
+  align-items: center;
+  padding:10px;
+  background-color: rgb(113, 121, 113);
+  color:white;
+  text-align: center;
+  width:200px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+}

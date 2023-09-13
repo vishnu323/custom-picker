@@ -18,6 +18,7 @@ export class AppComponent {
   fromtime : Date = new Date();
   totime:Date = new Date();
   startclicked : Boolean = false;
+  calenderopenmanager : Boolean= true;
 
   //day picker
   dayRange: FormGroup;
@@ -62,6 +63,10 @@ export class AppComponent {
 
   onCalendarClose() {
     this.showCustomButtons = false; // Set to false when the calendar is closed
+    if(this.calenderopenmanager && this.activeCustomClickId === "custom-range"){
+      this.datePicker.open();
+    }
+    
   }
 
   onDayCalendarClose() {
@@ -120,12 +125,6 @@ export class AppComponent {
     
   }
   
-  preventToggleClose(event: MouseEvent) {
-    console.log("vishnu12345677")
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
   handleCustomRange(duration: number) {
     const now = new Date();
     const newStartDate = subHours(now, duration);
