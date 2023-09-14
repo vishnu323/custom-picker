@@ -36,11 +36,13 @@
     [ngClass]="{ 'active': activeCustomClickId === 'last-90-days' }" >Last 90 Days</div>
     <div class="btn" id="custom-range" (click)="clickHandler('custom','custom-range',null)"
     [ngClass]="{ 'active': activeCustomClickId === 'custom-range' }" >Custom Range</div>
+    <div class="error-msg">
+      <div>{{errorMsg}}</div>
+    </div>
     <div id="time-picker">
       <timepicker [(ngModel)]="mytime" [showMeridian]="true"
       (ngModelChange)="onTimeChange($event)" [disabled]="!allowTimeChange"></timepicker>
       <div class="close-apply-btn">
-        <div>{{errorMsg}}</div>
         <div class="close-btn" (click)="handleDateCalendarClose()">close</div>
         <div class="apply-btn" (click)="handleDateCalendarNotClose()">apply</div>
       </div>
