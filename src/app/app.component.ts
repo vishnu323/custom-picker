@@ -86,6 +86,10 @@ export class AppComponent {
     this.datePicker.close();
   }
 
+  handleDateCalendarNotClose(){
+
+  }
+
   handleDayDateRangeInputClick(){
     this.dateDaypicker.open();
   }
