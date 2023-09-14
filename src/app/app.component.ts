@@ -20,6 +20,7 @@ export class AppComponent {
   startclicked : Boolean = false;
   calenderopenmanager : Boolean= true;
   allowTimeChange:Boolean = false; 
+  errorMsg:string = "";
 
   //day picker
   dayRange: FormGroup;
@@ -69,7 +70,12 @@ export class AppComponent {
     }else{
       this.calenderopenmanager = true;
     }
-    
+    if(!this.range.get('end')?.value){
+      this.errorMsg ="please select the valid range"
+      this.datePicker.open();
+    }else{
+      this.errorMsg = "";
+    }
   }
 
   onDayCalendarClose() {
