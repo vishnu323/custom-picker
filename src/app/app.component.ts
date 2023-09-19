@@ -1,8 +1,10 @@
-import { Component,ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDateRangePicker } from '@angular/material/datepicker';
 import { subHours, subDays } from 'date-fns';
 import { DatePipe } from '@angular/common'
+import { OverlayOutsideClickDispatcher } from '@angular/cdk/overlay';
+
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ export class AppComponent {
   range: FormGroup;
   showCustomButtons = false; // Initialize to false
   activeCustomClickId:string = "last-1-hour";
+  private selfClose: () => void;
   @ViewChild('picker') datePicker: MatDateRangePicker<Date>;
   mytime:Date =new Date()
   fromtime : Date = new Date();
@@ -29,7 +32,8 @@ export class AppComponent {
   @ViewChild('myDayCustomPicker') dateDaypicker: MatDateRangePicker<Date>;
   startDayclicked : Boolean = false;
 
-  constructor(private fb: FormBuilder,private datePipe: DatePipe) {
+  constructor(private fb: FormBuilder,private datePipe: DatePipe,private changeDetectorRef: ChangeDetectorRef,
+    private cdkConnectedOverlay: OverlayOutsideClickDispatcher) {
     this.range = this.fb.group({
       start: [''],
       end: [''],
@@ -57,6 +61,18 @@ export class AppComponent {
 
   onCalendarOpen() {
     this.showCustomButtons = true; // Set to true when the calendar is opened
+    if (this.selfClose === null || this.selfClose === undefined ) {
+      this.selfClose = this.datePicker.close;
+    }
+    this.datePicker.close = () => {};
+
+    // close calendar manually on outside click
+    this.cdkConnectedOverlay._attachedOverlays[0]._outsidePointerEvents.subscribe(() => {
+      // restore saved close method
+      this.datePicker.close = this.selfClose;
+      this.selfClose = undefined;
+      this.datePicker.close();
+    });
   }
 
   onDayCalendarOpen() {
@@ -66,13 +82,13 @@ export class AppComponent {
   onCalendarClose() {
     this.showCustomButtons = false; // Set to false when the calendar is closed
     if(this.calenderopenmanager && this.activeCustomClickId === "custom-range"){
-      this.datePicker.open();
+      // this.datePicker.open();
     }else{
       this.calenderopenmanager = true;
     }
     if(!this.range.get('end')?.value){
       this.errorMsg ="please select the valid range"
-      this.datePicker.open();
+      // this.datePicker.open();
     }else{
       this.errorMsg = "";
     }
