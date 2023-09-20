@@ -89,9 +89,11 @@ export class AppComponent {
         (btns.contains(event.target) || calendarPane.contains(event.target));
         console.log("prev-state",[this.activeCustomClickId,this.prevactiveCustomClickId])
       if (!isClickInside && !inputChecker.contains(event.target)) {
-        this.datePicker.close = this.selfClose;
-        this.selfClose = undefined;
-        this.datePicker.close();
+        if(this.datePicker.opened){
+          this.datePicker.close = this.selfClose;
+          this.selfClose = undefined;
+          this.datePicker.close();
+        }
       }
     }
   }
