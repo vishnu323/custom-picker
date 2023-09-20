@@ -66,13 +66,13 @@ export class AppComponent {
     }
     this.datePicker.close = () => {};
 
-    // close calendar manually on outside click
-    this.cdkConnectedOverlay._attachedOverlays[0]._outsidePointerEvents.subscribe(() => {
-      // restore saved close method
-      this.datePicker.close = this.selfClose;
-      this.selfClose = undefined;
-      this.datePicker.close();
-    });
+    // // close calendar manually on outside click
+    // this.cdkConnectedOverlay._attachedOverlays[0]._keydownEvents.subscribe(() => {
+    //   // restore saved close method
+    //   this.datePicker.close = this.selfClose;
+    //   this.selfClose = undefined;
+    //   this.datePicker.close();
+    // });
   }
 
   onDayCalendarOpen() {
@@ -105,6 +105,8 @@ export class AppComponent {
 
   handleDateCalendarClose(){
     this.calenderopenmanager = false;
+    this.datePicker.close = this.selfClose;
+    this.selfClose = undefined;
     this.datePicker.close();
   }
 
