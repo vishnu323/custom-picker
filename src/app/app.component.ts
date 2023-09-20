@@ -86,12 +86,6 @@ export class AppComponent {
     }else{
       this.calenderopenmanager = true;
     }
-    if(!this.range.get('end')?.value){
-      this.errorMsg ="please select the valid range"
-      // this.datePicker.open();
-    }else{
-      this.errorMsg = "";
-    }
   }
 
   onDayCalendarClose() {
@@ -104,10 +98,16 @@ export class AppComponent {
   }
 
   handleDateCalendarClose(){
-    this.calenderopenmanager = false;
-    this.datePicker.close = this.selfClose;
-    this.selfClose = undefined;
-    this.datePicker.close();
+    if(!this.range.get('end')?.value){
+      this.errorMsg ="please select the valid range"
+    }else{
+      this.errorMsg = "";
+      this.calenderopenmanager = false;
+      this.datePicker.close = this.selfClose;
+      this.selfClose = undefined;
+      this.datePicker.close();
+    }
+    
   }
 
   handleDateCalendarNotClose(){
@@ -143,6 +143,7 @@ export class AppComponent {
       this.startclicked = true;
     }
     if(startValue && endValue){
+      this.errorMsg = "";
       this.totime = this.mytime;
       this.attachTotime()
       this.startclicked = false;
