@@ -78,12 +78,17 @@ export class AppComponent {
 
     const calendarPanes = document.querySelectorAll('.cdk-overlay-pane');
     const calendarPane: any = calendarPanes?.[0];
+
+    const inputCheckers = document.querySelectorAll(".mat-form-field-flex");
+    const inputChecker: any = inputCheckers?.[0];
+
     if (calendarPane && btns) {
       const startValue = this.range.get('start')?.value;
       const endValue = this.range.get('end')?.value;
       const isClickInside =
-        btns.contains(event.target) || calendarPane.contains(event.target);
-      if (!isClickInside && startValue && endValue && this.activeCustomClickId !==this.prevactiveCustomClickId) {
+        (btns.contains(event.target) || calendarPane.contains(event.target));
+        console.log("prev-state",[this.activeCustomClickId,this.prevactiveCustomClickId])
+      if (!isClickInside && startValue && endValue && !inputChecker.contains(event.target)) {
         this.datePicker.close = this.selfClose;
         this.selfClose = undefined;
         this.datePicker.close();
