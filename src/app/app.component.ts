@@ -88,7 +88,7 @@ export class AppComponent {
       const isClickInside =
         (btns.contains(event.target) || calendarPane.contains(event.target));
         console.log("prev-state",[this.activeCustomClickId,this.prevactiveCustomClickId])
-      if (!isClickInside && startValue && endValue && !inputChecker.contains(event.target)) {
+      if (!isClickInside && !inputChecker.contains(event.target)) {
         this.datePicker.close = this.selfClose;
         this.selfClose = undefined;
         this.datePicker.close();
