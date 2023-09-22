@@ -41,7 +41,7 @@
     </div>
     <div id="time-picker">
       <timepicker [(ngModel)]="mytime" [showMeridian]="true"
-      (ngModelChange)="onTimeChange($event)" [disabled]="!allowTimeChange"></timepicker>
+      (ngModelChange)="onTimeChange($event)" [disabled]="!allowTimeChange" [minuteStep]="1"></timepicker>
       <div class="close-apply-btn">
         <div class="close-btn" (click)="handleDateCalendarClose()">close</div>
         <div class="apply-btn" (click)="handleDateCalendarNotClose()">apply</div>
